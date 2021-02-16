@@ -2,10 +2,10 @@
 
 
 
+ Author: [いけぴょん](http://ikepyon.hatenablog.jp/about)
+Link: [受け入れテスト用セキュリティチェックリスト](https://web.archive.org/web/20190330100343/http://www.geocities.jp/ikepy0n/securitycheck.html)
 
-| --: |
-| Author: [いけぴょん](http://ikepyon.hatenablog.jp/about) |
-| Link: [受け入れテスト用セキュリティチェックリスト](https://web.archive.org/web/20190330100343/http://www.geocities.jp/ikepy0n/securitycheck.html) |
+
 
 ----
 
@@ -72,7 +72,7 @@ textやhiddenといったInputタグ、Selectタグ、Cookie、Refererヘッダ�
   %27%3E%3Cs%3Ehoge%3C%2Fs%3E
   "><%1b%28%42s>hoge<%1b%28%42/s>
   '><%1b%28%42s>hoge<%1b%28%42/s>
- ```   
+ ```
   結果:  
   「hoge」に打ち消し線（hoge）が表示されたらクロスサイトスクリプトの問題が存在する可能性が高いです。開発元に修正を依頼しましょう。
 
@@ -83,10 +83,10 @@ textやhiddenといったInputタグ、Selectタグ、Cookie、Refererヘッダ�
   ';
   ";
   hoge
-```  
+```
   結果1:  
   「ODBCエラー」や、「JDBCエラー」、「ORA-ほげほげ」、「データベースエラー」等、データベースのエラーが表示されたら、データベースを不正に操作される可能性があります。開発元に修正を依頼しましょう。  
-  
+
   テスト文字列2:  
   数値 12345 に対して、
 ```
@@ -97,7 +97,7 @@ textやhiddenといったInputタグ、Selectタグ、Cookie、Refererヘッダ�
 ```
   abcd'%2B'e （＝abcd'+'e)
   abcd'%2C%2C'e
-```  
+```
   結果2:  
   操作する前と同じコンテンツが表示されたら、データベースを不正に操作される可能性があります。開発元に修正を依頼しましょう。
 
@@ -118,7 +118,7 @@ textやhiddenといったInputタグ、Selectタグ、Cookie、Refererヘッダ�
 %22%26hoge
 '&hoge
 %27%26hoge
-```  
+```
   結果:  
   500 Internal server errorと表示されたら、Webサーバーでコマンド実行ができる可能性があります。開発元にコマンド実行ができないか確認しましょう。
 
@@ -130,7 +130,7 @@ textやhiddenといったInputタグ、Selectタグ、Cookie、Refererヘッダ�
   ../hoge
   ..\\hoge
   ..\hoge
-```  
+```
   結果1:  
   500 Internal server errorと表示されたら、Webサーバー上のファイルを閲覧できる可能性があります。開発元にファイルの閲覧ができないか確認しましょう。
      
@@ -140,17 +140,17 @@ textやhiddenといったInputタグ、Selectタグ、Cookie、Refererヘッダ�
   ./hoge
    .\hoge
    .\\hoge
-```  
+```
   結果2:  
   操作する前と同じコンテンツが表示されたら、Webサーバー上のファイルを閲覧できる可能性があります。開発元にファイルの閲覧ができないか確認しましょう。
 
 - バッファオーバーフロー
   詳しくはこちらを参照してください。ただしこの問題は最近ではほとんどないと思います。
-    
+  
   テスト文字列:
 ```
 aaaa・・・(いっぱい入れてみる)
-```  
+```
   結果:  
   500 Internal server errorと表示されたら、アプリケーションでバッファオーバーフローが発生する可能性があります。開発元に、ポインタ、配列の境界チェックをきっちりしているかソースコードを確認してもらいましょう。
 
@@ -166,20 +166,24 @@ aaaa・・・(いっぱい入れてみる)
   1. hiddenフィールドにセッション管理データが格納されている場合、ペ ージのソースをブラウザで表示します。
   
   2. クッキーにセッション管理データが格納されている場合、ログオン後 ブラウザのURLを入力部分に、JAVAScriptを有効にした後、以下の文字を入力します。
-    `javascript:alert(document.cookie);`
-  このコマンドを実行するとクッキーの内容がポップアップで表示されます。
-  
+      
+  ```
+  javascript:alert(document.cookie);
+      ```
+      
+      このコマンドを実行するとクッキーの内容がポップアップで表示されます。
+      
   3. この中から、セッション管理データらしい文字列を探します。たいていの場合、「SID」、「Session」、「ID」といった文字が使われているはずです。これらの値が推測可能かどうかでセッション管理が貧弱かどうかを判断します。
 
 
 これらのテストは最悪の場合、暴走してサービスが停止する可能性があります。あくまでこのテストは受け入れテストかQAテストでのみ使用してください。  
-  
+
 なお、このチェックはあくまで簡易的な物です。これにパスしたからといって安全とは限りません。その点を注意して運用を行ってください。  
-  
+
 このようなテストを自動化できるツールを作成しました。詳しくは[こちら](https://web.archive.org/web/20190330100343/http://d.hatena.ne.jp/ikepyon/19000101#p1)  
-  
+
 最後にいろいろアイデアをいただきました[openmyaML](https://web.archive.org/web/20190330100343/http://openmya.hacker.jp/hiki/hiki.cgi?OpenmyaML)のみなさまに感謝いたします。
-  
+
 ------
 
 第1版 2005年11月1日 作成 第1.5版 2007年10月10日 修正
