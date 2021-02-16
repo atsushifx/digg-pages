@@ -1,8 +1,1 @@
-## .gitignore for github Pages
-#
-# digg pages:掘り出しもの for ソフトウェア開発
-#
-
-## config
-# jekyll関連のファイルは、管理しない
-*.yml
+.yml
